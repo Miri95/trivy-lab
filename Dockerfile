@@ -1,6 +1,9 @@
 FROM node:22-alpine
 
-RUN apk upgrade --no-cache && npm install -g npm@latest
+RUN apk upgrade --no-cache && \
+    npm install -g npm@latest && \
+    npm cache clean --force && \
+    rm -rf /root/.npm
 
 WORKDIR /app
 COPY package*.json ./
